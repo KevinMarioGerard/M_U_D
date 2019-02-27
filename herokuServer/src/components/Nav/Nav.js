@@ -9,7 +9,7 @@ class Nav extends Component {
             <div className="navbar">
                 <ul>
                     <li className="title">
-                        <a href="index.html">
+                        <a href="index/">
                             <img className="logoIcon" src={logo} />M.U.D.
                         </a>
                     </li>
