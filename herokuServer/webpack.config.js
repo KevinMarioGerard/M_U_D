@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: "./public/index.html",
@@ -46,5 +47,8 @@ module.exports = {
       }
     ]
   },
-  plugins: [htmlWebpackPlugin]
+  plugins: [
+    htmlWebpackPlugin,
+    new CleanWebpackPlugin(['./webapp/reactApp/*'])
+  ]
 };

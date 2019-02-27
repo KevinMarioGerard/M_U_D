@@ -1,15 +1,19 @@
 #Grab the latest alpine image
 FROM alpine:latest
 
-# Install python and pip
+# Install python and pip and npm
 RUN apk add --no-cache --update python2 py2-pip bash
+RUN apk add --no-cache --update npm bash
 ADD ./webapp/requirements.txt /tmp/requirements.txt
 
 # Install dependencies
 RUN pip2 install --no-cache-dir -q -r /tmp/requirements.txt
 
 # Add our code
-ADD ./webapp /opt/webapp/
+ADD ./ /opt/
+WORKDIR /opt
+RUN npm install
+RUN npm run build
 WORKDIR /opt/webapp
 
 # Expose is NOT supported by Heroku
