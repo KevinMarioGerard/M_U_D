@@ -2,12 +2,12 @@
 FROM alpine:latest
 
 # Install python and pip and npm
-RUN apk add --no-cache --update python2 py2-pip bash
+RUN apk add --no-cache --update python3 py3-pip bash
 RUN apk add --no-cache --update npm bash
 ADD ./webapp/requirements.txt /tmp/requirements.txt
 
 # Install dependencies
-RUN pip2 install --no-cache-dir -q -r /tmp/requirements.txt
+RUN pip3 install --no-cache-dir -q -r /tmp/requirements.txt
 
 # Add our code
 ADD ./ /opt/
