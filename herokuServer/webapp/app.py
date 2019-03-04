@@ -1,14 +1,22 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
+import json
+from UrlDetection import UrlDetection
+
 app = Flask(__name__,  template_folder='reactApp', static_folder='reactApp/static')
 
-sample = {
+resptemplate = {
     'title': u'M.U.D.',
-    'description': 'Classify between benign and malicious urls'
+    'url': 'null',
+    'detection': 'null'
 }
 
 @app.route('/todo/api/v1/url', methods=['GET'])
 def get_tasks():
-    return jsonify({'response': sample})
+    reqbody = json.loads(request.data.decode('utf-8'))
+    resptemplate['url'] = reqbody['url']
+    classifier = UrlDetection()
+    resptemplate['detection'] = classifier.detect_url(reqbody['url'])
+    return jsonify({'response': resptemplate})
 
 @app.route("/")
 def index():
