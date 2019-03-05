@@ -7,4 +7,4 @@ run:
   worker:
     command:
       - gunicorn --bind 0.0.0.0:$PORT wsgi
-    image: flask-server
+    image: flaskServer
