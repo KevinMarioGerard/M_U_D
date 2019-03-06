@@ -5,6 +5,7 @@ from keras import regularizers
 from keras.layers import Input, Embedding, Convolution1D, ELU, MaxPooling1D, LSTM
 from keras.models import Model
 from keras.optimizers import Adam
+from keras.backend import clear_session
 import os
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
@@ -38,6 +39,7 @@ class UrlDetection:
         url_int_tokens = [[printable.index(x) + 1 for x in url if x in printable]]
         X = sequence.pad_sequences(url_int_tokens, maxlen=75)
         target_proba = model.predict(X, batch_size=1)
+        clear_session()
         if target_proba[0] > 0.5:
             return "malicious"
         else:
