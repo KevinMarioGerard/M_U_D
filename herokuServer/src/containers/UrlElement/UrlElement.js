@@ -14,14 +14,22 @@ class UrlElement extends Component {
 
     onClick() {
         console.log("click");
-        console.log($("input[type=search]").val());
-        fetch("http://localhost:5000/todo/api/v1/url", {
+        var enteredUrl = $("input[type=search]").val();
+        if(enteredUrl == '') {
+            console.log("empty")
+            this.setState({
+                scanFlag: false,
+                result: "malicious"
+            });
+            return;
+        }
+        fetch("/todo/api/v1/url", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                "url": $("input[type=search]").val()
+                "url": enteredUrl
             }),
         })
         .then(res => res.json())
