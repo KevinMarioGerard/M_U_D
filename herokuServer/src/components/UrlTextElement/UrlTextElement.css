@@ -11,3 +11,31 @@
     color: white;
     width: 450px;
 }
+
+.malicious fieldset {
+    border-color: #ff7777 !important;
+    border-width: 2px;
+}
+
+.malicious label {
+    color: #ff7777 !important;
+}
+
+.malicious input {
+    color: #ff7777;
+    width: 450px;
+}
+
+.benign fieldset {
+    border-color: #98ff77 !important;
+    border-width: 2px;
+}
+
+.benign label {
+    color: #98ff77 !important;
+}
+
+.benign input {
+    color: #98ff77;
+    width: 450px;
+}

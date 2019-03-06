@@ -9,7 +9,7 @@ class UrlTextElement extends Component {
                 id="outlined-search"
                 label="Enter Url"
                 type="search"
-                className="urlSearchBox"
+                className={"urlSearchBox " + this.props.result}
                 margin="normal"
                 variant="outlined"
             />

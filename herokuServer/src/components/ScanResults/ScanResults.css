@@ -1,0 +1,13 @@
+.scanResults {
+    padding: 15px 0px 0px 0px;
+    font-size: 25px;
+    font-family: 'Exo', sans-serif;
+}
+
+.benign {
+    color: #98ff77;
+}
+
+.malicious {
+    color: #ff7777;
+}
