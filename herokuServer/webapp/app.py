@@ -10,11 +10,11 @@ resptemplate = {
     'detection': 'null'
 }
 
-@app.route('/todo/api/v1/url', methods=['GET'])
+@app.route('/todo/api/v1/url', methods=['POST'])
 def get_tasks():
+    print(request.data)
     reqbody = json.loads(request.data.decode('utf-8'))
     resptemplate['url'] = reqbody['url']
-    print(reqbody['url'])
     classifier = UrlDetection()
     resptemplate['detection'] = classifier.detect_url(reqbody['url'])
     return jsonify({'response': resptemplate})
