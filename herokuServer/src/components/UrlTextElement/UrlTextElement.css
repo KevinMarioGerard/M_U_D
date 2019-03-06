@@ -1,0 +1,13 @@
+.urlSearchBox fieldset {
+    border-color: white !important;
+    border-width: 2px;
+}
+
+.urlSearchBox label {
+    color: white !important;
+}
+
+.urlSearchBox input {
+    color: white;
+    width: 450px;
+}

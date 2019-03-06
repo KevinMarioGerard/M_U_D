@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify, request
 import json
-#from UrlDetection import UrlDetection
+from UrlDetection import UrlDetection
 
 app = Flask(__name__,  template_folder='reactApp', static_folder='reactApp/static')
 
@@ -15,8 +15,8 @@ def get_tasks():
     reqbody = json.loads(request.data.decode('utf-8'))
     resptemplate['url'] = reqbody['url']
     print(reqbody['url'])
-    #classifier = UrlDetection()
-    #resptemplate['detection'] = classifier.detect_url(reqbody['url'])
+    classifier = UrlDetection()
+    resptemplate['detection'] = classifier.detect_url(reqbody['url'])
     return jsonify({'response': resptemplate})
 
 @app.route("/")

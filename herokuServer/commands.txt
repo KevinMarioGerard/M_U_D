@@ -9,3 +9,6 @@ heroku create
 heroku container:push web --app <app_name>
 heroku container:release web
 heroku open
+heroku container:push web -a glacial-ridge-51682
+heroku container:release web -a glacial-ridge-51682
+heroku logs -a glacial-ridge-51682 --tail
