@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Startscan.css';
 import loading from '../../img/scanning.gif';
 import Button from '@material-ui/core/Button';
-import SimpleDialogWrapped from '../SimpleDialogWrapped/SimpleDialogWrapped';
 
 class Startscan extends Component {
     constructor(props) {
@@ -24,15 +23,11 @@ class Startscan extends Component {
         scanSuccess: 0,
         openModal: false
       }));
-
-      new Promise((resolve, reject) => {
-        //ajax call
-        resolve();
-      })
-      .then(function(){ 
-        
-      })
-      console.log(this.state);
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {"id": "scanPage"}, function(response) {
+          console.log(response);
+        });
+      });
       this.setPopOverResultState(1);
     }
 
@@ -93,8 +88,6 @@ class Startscan extends Component {
             this.state.scanSuccess != 0 && "Click here to view Results"
           }
           </a>
-          <SimpleDialogWrapped />
-          {this.state.openModal && <SimpleDialogWrapped />}
         </div>
     );
   }
