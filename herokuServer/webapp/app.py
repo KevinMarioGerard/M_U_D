@@ -11,7 +11,7 @@ resptemplate = {
 }
 
 def split_url(url):
-    urlString= ''
+    urlString = url
     if url.startswith('https://'):
         urlString = url.split('https://')[1]
     elif url.startswith('http://'):
@@ -19,7 +19,7 @@ def split_url(url):
     return urlString
 
 @app.route('/todo/api/v1/url', methods=['POST'])
-def get_tasks():
+def url_tasks():
     print(request.data)
     reqbody = json.loads(request.data.decode('utf-8'))
     urlString = split_url(reqbody['url'])
@@ -28,6 +28,20 @@ def get_tasks():
     classifier = UrlDetection()
     resptemplate['detection'] = classifier.detect_url(urlString)
     return jsonify({'response': resptemplate})
+
+@app.route('/todo/api/v1/urlList', methods=['POST'])
+def urlList_tasks():
+    print(request.data)
+    reqbody = json.loads(request.data.decode('utf-8'))
+    urlList = reqbody['urllist']
+    print(urlList)
+    classifier = UrlDetection()
+    response = []
+    for i in urlList:
+        urlString = split_url(i)
+        response.append({'url': urlString,
+                    'detection': classifier.detect_url(urlString)})
+    return jsonify({'title': u'M.U.D.', 'detection': response})
 
 @app.route("/")
 def index():
