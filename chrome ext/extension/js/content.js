@@ -11,31 +11,30 @@ chrome.runtime.onMessage.addListener(
         else if(request.id == 'scanPage') {
             console.log(request);
             new Promise(function(resolve, reject){
-                response = [];
+                hyperlinks = [];
                 var anchor_tags = document.getElementsByTagName("a");
                 for(let i = 0; i < anchor_tags.length; i++) {
-                    console.log(anchor_tags[i].href);
-                    fetch("https://glacial-ridge-51682.herokuapp.com/todo/api/v1/url", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            "url": anchor_tags[i].href
-                        }),
-                    })
-                    .then(res => res.json())
-                    .then(
-                        (result) => {
-                            console.log(result.response.detection);
-                            response.push(result);
-                        },
-                        (error) => {
-                            console.log(result);
-                        }
-                    )
+                    hyperlinks.push(anchor_tags[i].href);
                 }
-                resolve(response);
+                fetch("https://glacial-ridge-51682.herokuapp.com/todo/api/v1/urlList", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        "urllist": hyperlinks
+                    }),
+                })
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        console.log(result.response.detection);
+                        resolve(result);
+                    },
+                    (error) => {
+                        console.log(error);
+                    }
+                )
             }).then(function(resp) {
                 console.log("returning response");
                 sendResponse(resp);
