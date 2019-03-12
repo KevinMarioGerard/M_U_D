@@ -9,7 +9,8 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
 
 module.exports = {
   entry: {
-    popup: "./src/index.js"
+    popup: "./src/index.js",
+    content: "./src/containers/content.js"
   },
   output: {
     path: path.resolve("./extension"),

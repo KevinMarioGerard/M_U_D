@@ -3,35 +3,18 @@ chrome.contextMenus.create({"title": "Scan Page...", "contexts":["page"], "id": 
 
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
     if (info.menuItemId == "scanningURL") {
-        fetch("https://glacial-ridge-51682.herokuapp.com/todo/api/v1/url", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                "url": info.linkUrl
-            }),
-        })
-        .then(res => res.json())
-        .then(
-            (result) => {
-                chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                    chrome.tabs.sendMessage(tabs[0].id, {"id": "scanUrl", urlResult: result}, function(response) {
-                      console.log(response);
-                    });
-                });
-                console.log(result.response.detection);
-            },
-            (error) => {
-                console.log(result);
-            }
-        )
+        console.log("Scanning Url");
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, {id: "scanUrl", url: info.linkUrl}, function(response) {
+                console.log(response);
+            });
+        });
     }
     else if(info.menuItemId == "scanningPage") {
         console.log("Scanning Page");
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, {"id": "scanPage"}, function(response) {
-              console.log(response);
+                console.log(response);
             });
         });
     }

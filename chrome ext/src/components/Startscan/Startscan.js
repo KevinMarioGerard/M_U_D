@@ -63,7 +63,7 @@ class Startscan extends Component {
         <div>
           <Button variant="outlined" 
             color="primary" 
-            onClick={this.startScan} 
+            onClick={() => this.startScan()} 
             style={{color: "#2196f3", border: "2px solid #1565c0"}}
           > 
           { !this.state.toggleScan && "Start Scan" }
