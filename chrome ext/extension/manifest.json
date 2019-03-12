@@ -22,5 +22,6 @@
   "icons": {
     "48": "images/logo.png"
   },
-  "manifest_version": 2
+  "manifest_version": 2,
+  "web_accessible_resources": ["img/scanning.gif", "img/benign.png", "img/malicious.png"]
 }

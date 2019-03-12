@@ -25,7 +25,7 @@ class AlertDialog extends Component {
         this.setState({
             open: false
         });
-        $('#rootdialog').remove();
+        $('#rootdialogscanningmud').remove(); 
     }
 
     render() {
@@ -59,7 +59,7 @@ chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if(request.id == 'scanUrl') {
             console.log(request.url);
-            $('body').append('<div id="rootdialog"></div>');
+            $('body').append('<div id="rootdialogscanningmud"></div>');
             ReactDOM.render(<AlertDialog urlList = {[request.url]} flag = {true}/>, document.getElementById('rootdialog'));
         }
         else if(request.id == 'scanPage') {
@@ -69,7 +69,9 @@ chrome.runtime.onMessage.addListener(
                 var anchor_tags = document.getElementsByTagName("a");
                 for(let i = 0; i < anchor_tags.length; i++) {
                     console.log(anchor_tags[i].href);
-                    urlList.push(anchor_tags[i].href);
+                    if(anchor_tags[i].href != '') {
+                        urlList.push(anchor_tags[i].href);
+                    }
                 }
                 resolve(urlList)
             }).then(function(resp) {
@@ -82,29 +84,3 @@ chrome.runtime.onMessage.addListener(
         }
     }
 );
-
-
-/*fetch("https://glacial-ridge-51682.herokuapp.com/todo/api/v1/url", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            "url": anchor_tags[i].href
-                        }),
-                    })
-                    .then(res => res.json())
-                    .then(
-                        (result) => {
-                            console.log(result.response.detection);
-                            response.push(result);
-                            console.log(j);
-                            if(j == 1) {
-                                resolve(response);
-                            }
-                            j--;
-                        },
-                        (error) => {
-                            console.log(error);
-                        }
-                    )*/
