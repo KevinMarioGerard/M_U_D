@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Startscan.css';
-<<<<<<< HEAD
 import loading from '../../img/scanning.gif';
 import Button from '@material-ui/core/Button';
 
@@ -92,33 +91,6 @@ class Startscan extends Component {
         </div>
     );
   }
-=======
-
-class Startscan extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {isToggleOn: true};
-        this.handleClick = this.handleClick.bind(this);
-      }
-    
-      handleClick(e) {
-        e.preventDefault();
-        this.setState(state => ({
-          isToggleOn: !state.isToggleOn
-        }));
-      }
-    
-    render() {
-        return (
-            <div>
-            { 
-                this.state.isToggleOn && 
-                <button className="startScan" onClick={(e) => this.handleClick(e)}>Start Scan</button>
-            }
-            </div>
-        );
-    }
->>>>>>> parent of 03c94bf... Cleaning branch
 }
 
 export default Startscan;
