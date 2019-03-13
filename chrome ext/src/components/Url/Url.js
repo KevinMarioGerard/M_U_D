@@ -35,6 +35,7 @@ class UrlResult extends Component {
                     img: 'img/benign.png'
                 });
             }
+            this.props.progress();
         },
         (error) => {
             console.log(error);

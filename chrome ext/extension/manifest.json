@@ -16,12 +16,12 @@
     "default_title": "M.U.D.",
     "default_popup": "popup.html",
     "default_icon": {
-      "48": "images/logo.png"
+      "48": "img/logo.png"
     }
   },
   "icons": {
-    "48": "images/logo.png"
+    "48": "img/logo.png"
   },
   "manifest_version": 2,
-  "web_accessible_resources": ["img/scanning.gif", "img/benign.png", "img/malicious.png"]
+  "web_accessible_resources": ["img/scanning.gif", "img/benign.png", "img/malicious.png", "img/logo.png", "font/breeserif-regular.ttf"]
 }

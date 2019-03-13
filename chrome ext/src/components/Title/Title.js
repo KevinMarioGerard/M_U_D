@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Title.css';
-import logo from '../../img/logo.png';
 import close from '../../img/close.png';
 
 class Title extends Component {
@@ -8,10 +7,10 @@ class Title extends Component {
     return (
       <div className="title">
         <center>
-            <img className="logoIcon" src={logo} />
+            <img className="logoIcon" src={chrome.extension.getURL('img/logo.png')} />
             M.U.D.
             {
-                this.props.closeicon && <input type="image" className="closeIcon" src={close} />
+                this.props.closeicon && <input type="image" className="closeIcon" src={chrome.extension.getURL('img/close.png')} />
             }
         </center>
         <hr />
