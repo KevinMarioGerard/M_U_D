@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import './Url.css';
 
-class UrlResult extends Component {
+class Url extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,10 +48,10 @@ class UrlResult extends Component {
     return (
         <ListItem>  
             <img src={chrome.extension.getURL(this.state.img)} style={{height: "20px", width: "20px"}}/>
-            <ListItemText primary={this.props.url} />
+            <ListItemText primary = {this.props.url} className = {"urlScan"}/>
         </ListItem>
     );
   }
 }
 
-export default UrlResult;
+export default Url;
