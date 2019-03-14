@@ -46,9 +46,9 @@ class Url extends Component {
 
   render() {
     return (
-        <ListItem>  
+        <ListItem button>  
             <img src={chrome.extension.getURL(this.state.img)} style={{height: "20px", width: "20px"}}/>
-            <ListItemText primary = {this.props.url} className = {"urlScan"}/>
+            <ListItemText primary = {(this.props.url.length <= 60) ? this.props.url: (this.props.url.slice(0, 60) + '...')} className = {"urlScan"}/>
         </ListItem>
     );
   }
