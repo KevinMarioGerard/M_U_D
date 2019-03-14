@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import './Url.css';
 
-class UrlResult extends Component {
+class Url extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,6 +36,7 @@ class UrlResult extends Component {
                     img: 'img/benign.png'
                 });
             }
+            this.props.progress();
         },
         (error) => {
             console.log(error);
@@ -44,12 +46,12 @@ class UrlResult extends Component {
 
   render() {
     return (
-        <ListItem>  
+        <ListItem button>  
             <img src={chrome.extension.getURL(this.state.img)} style={{height: "20px", width: "20px"}}/>
-            <ListItemText primary={this.props.url} />
+            <ListItemText primary = {(this.props.url.length <= 60) ? this.props.url: (this.props.url.slice(0, 60) + '...')} className = {"urlScan"}/>
         </ListItem>
     );
   }
 }
 
-export default UrlResult;
+export default Url;

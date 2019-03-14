@@ -15,7 +15,7 @@ class UrlResult extends Component {
     return (
       <List>
         {this.props.urlList.map(url => (
-          <Url url = {url} />   
+          <Url url = {url} progress = {this.props.progress}/>   
         ))}
       </List>
     );
